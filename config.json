@@ -1,7 +1,7 @@
 {
     "public": {
       "default": {
-        "commerce-core-endpoint": "https://integration-5ojmyuq-7yvbzwvtkgerq.us-4.magentosite.cloud//graphql",
+        "commerce-core-endpoint": "https://integration-5ojmyuq-7yvbzwvtkgerq.us-4.magentosite.cloud/graphql",
         "commerce-endpoint": "https://catalog-service-sandbox.adobe.io/graphql",
         "headers": {
           "all": {
