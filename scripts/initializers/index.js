@@ -1,6 +1,7 @@
 /* eslint-disable import/no-cycle */
 // Drop-in Tools
-import { getConfigValue, getCookie } from '@dropins/tools/lib/aem/configs.js';
+import { getCookie } from '@dropins/tools/lib.js';
+import { getConfigValue } from '@dropins/tools/lib/aem/configs.js';
 import { events } from '@dropins/tools/event-bus.js';
 import {
   removeFetchGraphQlHeader,

@@ -22,7 +22,7 @@ import {
   loadCSS,
   sampleRUM,
 } from './aem.js';
-import { trackHistory } from './commerce.js';
+import { getConfigFromSession, trackHistory } from './commerce.js';
 import initializeDropins from './initializers/index.js';
 
 const AUDIENCES = {
@@ -432,7 +432,7 @@ export function getConsent(topic) {
 }
 
 async function loadPage() {
-  await initializeConfig();
+  await initializeConfig(await getConfigFromSession());
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();

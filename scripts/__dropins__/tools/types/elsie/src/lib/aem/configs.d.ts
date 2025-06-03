@@ -19,12 +19,6 @@ interface Config {
  */
 declare function resetConfig(): void;
 /**
- * Get cookie
- * @param {string} cookieName - The name of the cookie to get
- * @returns {string} - The value of the cookie
- */
-declare function getCookie(cookieName: string): string | undefined;
-/**
  * Get root path
  * @param {Object} [configObj=config] - The config object.
  * @returns {string} - The root path.
@@ -49,9 +43,9 @@ declare function isMultistore(): boolean;
 declare function getHeaders(scope: string): Record<string, string>;
 /**
  * Initializes the configuration system.
- * @returns {Promise<void>}
+ * @returns {Object} The initialized root configuration
  */
-declare function initializeConfig(): Promise<ConfigRoot>;
+declare function initializeConfig(configObj: Config): ConfigRoot;
 /**
  * Retrieves a configuration value.
  *
@@ -59,5 +53,5 @@ declare function initializeConfig(): Promise<ConfigRoot>;
  * @returns {string|undefined} - The value of the configuration parameter, or undefined.
  */
 declare function getConfigValue(configParam: string): any;
-export { initializeConfig, getCookie, getRootPath, getListOfRootPaths, isMultistore, getConfigValue, getHeaders, resetConfig, };
+export { initializeConfig, getRootPath, getListOfRootPaths, isMultistore, getConfigValue, getHeaders, resetConfig, };
 //# sourceMappingURL=configs.d.ts.map

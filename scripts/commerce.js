@@ -1,8 +1,8 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
+import { getCookie } from '@dropins/tools/lib.js';
 import {
   getHeaders,
   getConfigValue,
-  getCookie,
   getRootPath,
 } from '@dropins/tools/lib/aem/configs.js';
 import { getMetadata } from './aem.js';
@@ -69,6 +69,39 @@ export async function fetchPlaceholders(prefix = 'default') {
     });
   }
   return window.placeholders[`${prefix}`];
+}
+
+/**
+ * Fetches config from remote and saves in session, then returns it, otherwise
+ * returns if it already exists.
+ *
+ * @returns {Promise<Object>} - The config JSON from session storage
+ */
+export async function getConfigFromSession() {
+  const configURL = `${window.location.origin}/config.json`;
+
+  try {
+    const configJSON = window.sessionStorage.getItem('config');
+    if (!configJSON) {
+      throw new Error('No config in session storage');
+    }
+
+    const parsedConfig = JSON.parse(configJSON);
+    if (
+      !parsedConfig[':expiry']
+      || parsedConfig[':expiry'] < Math.round(Date.now() / 1000)
+    ) {
+      throw new Error('Config expired');
+    }
+    return parsedConfig;
+  } catch (e) {
+    const config = await fetch(configURL);
+    if (!config.ok) throw new Error('Failed to fetch config');
+    const configJSON = await config.json();
+    configJSON[':expiry'] = Math.round(Date.now() / 1000) + 7200;
+    window.sessionStorage.setItem('config', JSON.stringify(configJSON));
+    return configJSON;
+  }
 }
 
 /* Common query fragments */
