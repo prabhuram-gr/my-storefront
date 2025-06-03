@@ -1,11 +1,11 @@
 /* eslint-disable import/prefer-default-export, import/no-cycle */
-import { getMetadata } from './aem.js';
 import {
   getHeaders,
   getConfigValue,
   getCookie,
   getRootPath,
-} from './configs.js';
+} from '@dropins/tools/lib/aem/configs.js';
+import { getMetadata } from './aem.js';
 import { getConsent } from './scripts.js';
 
 /**
@@ -91,7 +91,7 @@ export const priceFieldsFragment = `fragment priceFields on ProductViewPrice {
 /**
  * Creates a short hash from an object by sorting its entries and hashing them.
  * @param {Object} obj - The object to hash
- * @param {number} [length=5] - Length of the resulting hash
+  @param {number} [length=5] - Length of the resulting hash
  * @returns {string} A short hash string
  */
 function createHashFromObject(obj, length = 5) {
@@ -360,4 +360,12 @@ export function mapProductAcdl(product) {
     canonicalUrl: new URL(`/products/${product.urlKey}/${product.sku}`, window.location.origin).toString(),
     mainImageUrl: product?.images?.[0]?.url,
   };
+}
+
+/**
+ * Checks if the user is authenticated
+ * @returns {boolean} - true if the user is authenticated
+ */
+export function checkIsAuthenticated() {
+  return !!getCookie('auth_dropin_user_token') ?? false;
 }

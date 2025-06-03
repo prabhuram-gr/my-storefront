@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/no-cycle */
+import { initializeConfig, getRootPath, getListOfRootPaths } from '@dropins/tools/lib/aem/configs.js';
 import { events } from '@dropins/tools/event-bus.js';
 import {
   buildBlock,
@@ -23,7 +24,6 @@ import {
 } from './aem.js';
 import { trackHistory } from './commerce.js';
 import initializeDropins from './initializers/index.js';
-import { initializeConfig, getRootPath, getListOfRootPaths } from './configs.js';
 
 const AUDIENCES = {
   mobile: () => window.innerWidth < 600,
