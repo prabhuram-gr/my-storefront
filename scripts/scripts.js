@@ -253,18 +253,20 @@ async function loadEager(doc) {
   } else if (document.body.querySelector('main .product-list-page')) {
     pageType = 'Category';
     preloadFile('/scripts/widgets/search.js', 'script');
-  } else if (document.body.querySelector('main .product-list-page-custom')) {
-    // TODO Remove this bracket if not using custom PLP
-    pageType = 'Category';
-    const plpBlock = document.body.querySelector('main .product-list-page-custom');
-    const { category, urlpath } = readBlockConfig(plpBlock);
+  } 
+  // else if (document.body.querySelector('main .product-list-page-custom')) {
+  //   // TODO Remove this bracket if not using custom PLP
+  //   pageType = 'Category';
+  //   const plpBlock = document.body.querySelector('main .product-list-page-custom');
+  //   const { category, urlpath } = readBlockConfig(plpBlock);
 
-    if (category && urlpath) {
-      // eslint-disable-next-line import/no-unresolved, import/no-absolute-path
-      const { preloadCategory } = await import('/blocks/product-list-page-custom/product-list-page-custom.js');
-      preloadCategory({ id: category, urlPath: urlpath });
-    }
-  } else if (document.body.querySelector('main .commerce-cart')) {
+  //   if (category && urlpath) {
+  //     // eslint-disable-next-line import/no-unresolved, import/no-absolute-path
+  //     const { preloadCategory } = await import('/blocks/product-list-page-custom/product-list-page-custom.js');
+  //     preloadCategory({ id: category, urlPath: urlpath });
+  //   }
+  // } 
+  else if (document.body.querySelector('main .commerce-cart')) {
     pageType = 'Cart';
   } else if (document.body.querySelector('main .commerce-checkout')) {
     pageType = 'Checkout';
