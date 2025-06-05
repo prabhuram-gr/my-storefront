@@ -1,4 +1,4 @@
-import { Header, provider as uiProvider } from '@dropins/tools/components.js';
+import { Header, provider as UI } from '@dropins/tools/components.js';
 import { readBlockConfig } from '../../scripts/aem.js';
 
 export default function decorate(block) {
@@ -8,5 +8,5 @@ export default function decorate(block) {
 
   block.innerHTML = '';
 
-  return uiProvider.render(Header, { title })(block);
+  return UI.render(Header, { title })(block);
 }

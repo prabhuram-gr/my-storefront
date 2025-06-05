@@ -4,6 +4,7 @@ import {
   Button,
   provider as UI,
 } from '@dropins/tools/components.js';
+import { h } from '@dropins/tools/preact.js';
 import { events } from '@dropins/tools/event-bus.js';
 import * as pdpApi from '@dropins/storefront-pdp/api.js';
 import { render as pdpRendered } from '@dropins/storefront-pdp/render.js';
@@ -170,7 +171,7 @@ export default async function decorate(block) {
   // Configuration – Button - Add to Cart
   const addToCart = await UI.render(Button, {
     children: labels.PDP?.Product?.AddToCart?.label,
-    icon: Icon({ source: 'Cart' }),
+    icon: h(Icon, { source: 'Cart' }),
     onClick: async () => {
       const buttonActionText = isUpdateMode
         ? labels.Custom?.UpdatingInCart?.label
@@ -228,7 +229,7 @@ export default async function decorate(block) {
         inlineAlert = await UI.render(InLineAlert, {
           heading: 'Error',
           description: error.message,
-          icon: Icon({ source: 'Warning' }),
+          icon: h(Icon, { source: 'Warning' }),
           'aria-live': 'assertive',
           role: 'alert',
           onDismiss: () => {
@@ -281,7 +282,7 @@ export default async function decorate(block) {
     wishlistToggleBtn.setProps(
       (prev) => ({
         ...prev,
-        icon: Icon({ source: 'Heart' }),
+        icon: h(Icon, { source: 'Heart' }),
       }),
       events.emit('wishlist/alert', {
         action: 'move',
