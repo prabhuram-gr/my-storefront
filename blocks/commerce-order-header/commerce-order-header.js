@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-extraneous-dependencies */
 import { events } from '@dropins/tools/event-bus.js';
 import { Header, provider as uiProvider } from '@dropins/tools/components.js';
 import { CUSTOMER_ORDER_DETAILS_PATH, CUSTOMER_ORDERS_PATH } from '../../scripts/constants.js';

@@ -1,8 +1,5 @@
-/* eslint-disable import/no-unresolved */
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
 /* eslint-disable no-use-before-define */
-/* eslint-disable prefer-const */
 
 // Dropin Tools
 import { events } from '@dropins/tools/event-bus.js';

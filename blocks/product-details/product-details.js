@@ -1,5 +1,3 @@
-/* eslint-disable import/no-unresolved */
-
 import {
   InLineAlert,
   Icon,
@@ -106,10 +104,6 @@ export default async function decorate(block) {
   let inlineAlert = null;
   const routeToWishlist = '/wishlist';
 
-  // Render Containers
-  // Need let here because they are assigned later, after Promise.all
-  let addToCart;
-
   const [
     _galleryMobile,
     _gallery,
@@ -173,9 +167,8 @@ export default async function decorate(block) {
     })($wishlistToggleBtn),
   ]);
 
-  // Configuration – Button - Add to Cart (Rendered AFTER Promise.all)
-  // eslint-disable-next-line prefer-const
-  addToCart = await UI.render(Button, {
+  // Configuration – Button - Add to Cart
+  const addToCart = await UI.render(Button, {
     children: labels.PDP?.Product?.AddToCart?.label,
     icon: Icon({ source: 'Cart' }),
     onClick: async () => {
@@ -214,7 +207,6 @@ export default async function decorate(block) {
               window.location.href = cartRedirectUrl.toString();
             } else {
               // Fallback if SKU is somehow missing (shouldn't happen in normal flow)
-              // eslint-disable-next-line no-console
               console.warn(
                 'Could not retrieve SKU for updated item. Redirecting to cart without parameter.',
               );

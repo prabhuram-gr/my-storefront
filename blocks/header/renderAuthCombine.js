@@ -1,6 +1,3 @@
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable import/no-unresolved */
-/* eslint-disable import/no-extraneous-dependencies */
 import { render as authRenderer } from '@dropins/storefront-auth/render.js';
 import { AuthCombine } from '@dropins/storefront-auth/containers/AuthCombine.js';
 import { SuccessNotification } from '@dropins/storefront-auth/containers/SuccessNotification.js';
@@ -216,8 +213,7 @@ const renderAuthCombine = (navSections, toggleMenu) => {
     '.default-content-wrapper > ul > li',
   );
 
-  const accountLi = Array.from(listItems).find((li) =>
-    li.textContent.includes('Account'));
+  const accountLi = Array.from(listItems).find((li) => li.textContent.includes('Account'));
 
   if (accountLi) {
     const accountLiItems = accountLi.querySelectorAll('ul > li');
