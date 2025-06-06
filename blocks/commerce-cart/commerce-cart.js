@@ -128,7 +128,7 @@ export default async function decorate(block) {
               children: placeholders?.Cart?.EditButton?.label,
               variant: 'tertiary',
               size: 'medium',
-              icon: h(Icon, { source: 'Placeholder' }),
+              icon: h(Icon, { source: 'Edit' }),
               href: `${productUrl}?${params.toString()}`,
             })(editLink);
 
