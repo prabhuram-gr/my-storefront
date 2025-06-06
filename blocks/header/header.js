@@ -13,6 +13,13 @@ import renderAuthCombine from './renderAuthCombine.js';
 import { renderAuthDropdown } from './renderAuthDropdown.js';
 import { rootLink } from '../../scripts/scripts.js';
 
+import SearchBarInput from '@/plp/containers/SearchBarInput.js';
+import SearchBarResults from '@/plp/containers/SearchBarResults.js';
+import { render as provider } from '@/plp/render.js';
+
+// Initializers
+import '../../scripts/initializers/search.js';
+
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
@@ -294,10 +301,9 @@ export default async function decorate(block) {
   <div class="search-wrapper nav-tools-wrapper">
     <button type="button" class="nav-search-button">Search</button>
     <div class="nav-search-input nav-search-panel nav-tools-panel">
-      <form action="/search" method="GET">
-        <input id="search" type="search" name="q" placeholder="Search" />
+        <div class="search-bar__input"></div>
+        <div class="search-bar__results></div>
         <div id="search_autocomplete" class="search-autocomplete"></div>
-      </form>
     </div>
   </div>
   `);
@@ -308,11 +314,13 @@ export default async function decorate(block) {
 
   const searchButton = navTools.querySelector('.nav-search-button');
 
-  const searchInput = searchPanel.querySelector('input');
+  const searchInput = searchPanel.querySelector('.search-bar__input');
 
   const searchForm = searchPanel.querySelector('form');
 
-  searchForm.action = rootLink('/search');
+  // searchForm.action = rootLink('/search');
+
+
 
   async function toggleSearch(state) {
     const show = state ?? !searchPanel.classList.contains('nav-tools-panel--show');
@@ -320,8 +328,7 @@ export default async function decorate(block) {
     searchPanel.classList.toggle('nav-tools-panel--show', show);
 
     if (show) {
-      await import('./searchbar.js');
-      searchInput.focus();
+      provider.render(SearchBarInput, { storeDetails: {} })(searchInput);
     }
   }
 
