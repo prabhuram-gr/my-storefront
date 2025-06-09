@@ -79,7 +79,7 @@ import {
   isCheckoutEmpty,
   scrollToElement,
   setAddressOnCart,
-} from '../../scripts/checkout.js';
+} from './utils.js';
 
 import { authPrivacyPolicyConsentSlot, SUPPORT_PATH } from '../../scripts/constants.js';
 import { rootLink } from '../../scripts/scripts.js';
